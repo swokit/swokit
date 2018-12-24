@@ -4,10 +4,29 @@ Swokit - Swoole kit library.
 
 Some useful components for use swoole.
 
+Components:
+
+- `conn-pool`
+- `server`
+- `rpc-server`
+- `http-server`
+- `websocket-server`
+- `task`
+- `utils`
+- `process`
+
 ## Git Subtree
 
+- add git repo:
+
 ```bash
-git subtree add --prefix=sub/libpng https://github.com/test/libpng.git master --squash
+./subtree-add.sh http-server
+```
+
+- push to repos:
+
+```bash
+./subtree-push.sh NAME|all
 ```
 
 ## License
