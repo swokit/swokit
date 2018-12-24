@@ -7,10 +7,12 @@
 #echo $*
 #echo $#
 
+binName="bash $(basename $0)"
+
 if [[ -z "$1" ]]; then
-    echo -e "Usage: $(basename $0) PROJECT_NAME\n"
+    echo -e "Usage: $binName PROJECT_NAME\n"
     echo "Example:"
-    echo "  $(basename $0) http-server"
+    echo "  $binName http-server"
     exit
 fi
 

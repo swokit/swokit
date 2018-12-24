@@ -15,6 +15,12 @@ Components:
 - `utils`
 - `process`
 
+## Install
+
+```bash
+composer require swokit/swokit
+```
+
 ## Git Subtree
 
 - add git repo:

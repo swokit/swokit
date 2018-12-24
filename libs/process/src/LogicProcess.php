@@ -6,33 +6,33 @@
  * Time: 9:44
  */
 
-namespace SwooleKit\Process;
+namespace Swokit\Process;
 
-use Toolkit\Sys\ProcessUtil;
 use Swoole\Process;
 use Swoole\Serialize;
 use Swoole\Server;
+use Toolkit\Sys\ProcessUtil;
 
 /**
  * Class LogicProcess
  * @form SD framework
- * @package SwooleKit\Process
+ * @package Swokit\Process
  */
 class LogicProcess implements ProcessInterface
 {
     /** @var  string */
     private $name;
 
-    /** @var Server  */
+    /** @var Server */
     private $server;
 
-    /** @var Process  */
+    /** @var Process */
     private $process;
 
-    /** @var int  */
+    /** @var int */
     private $bufferSize = 64 * 1024;
 
-    /** @var int  */
+    /** @var int */
     private $index = 0;
 
     /** @var int */
@@ -42,7 +42,7 @@ class LogicProcess implements ProcessInterface
      * class constructor.
      * @param string $name 进程名称
      * @param Server $server Swoole server instance
-     * @param int $workerId  要与此进程通信的 worker id
+     * @param int $workerId 要与此进程通信的 worker id
      */
     public function __construct(string $name, Server $server, $workerId)
     {

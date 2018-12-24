@@ -7,7 +7,7 @@
 #echo $*
 #echo $#
 
-binName="bash ./$(basename $0)"
+binName="bash $(basename $0)"
 
 if [[ -z "$1" ]]; then
     echo "Usage:"
@@ -18,7 +18,12 @@ if [[ -z "$1" ]]; then
     exit
 fi
 
-set -ex
 libs=$(ls ./libs/)
-echo $libs
-#git subtree add --prefix=libs/$1 https://github.com/swokit/$1.git master --squash
+echo "Will pushed libs:"
+echo ${libs}
+
+set -ex
+for lbName in ${libs} ; do
+  git subtree push --prefix=libs/${lbName} https://github.com/swokit/${lbName}.git master --squash
+done
+
