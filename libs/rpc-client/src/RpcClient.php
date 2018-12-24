@@ -6,14 +6,14 @@
  * Time: 15:06
  */
 
-namespace Inhere\Server\Rpc;
+namespace Swokit\Rpc\Client;
 
 use Swoole\Client;
 use Swoole\Coroutine\Client as CoClient;
 
 /**
  * Class RpcClient
- * @package Inhere\Server\Rpc
+ * @package Swokit\Rpc\Client
  */
 class RpcClient
 {
