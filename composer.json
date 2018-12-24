@@ -1,0 +1,30 @@
+{
+  "name": "swokit/http-server",
+  "type": "library",
+  "description": "some http server tool library of the swoole",
+  "keywords": ["library","tool","php"],
+  "homepage": "https://github.com/swokit/http-server",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "inhere",
+      "email": "in.798@qq.com",
+      "homepage": "http://www.yzone.net/"
+    }
+  ],
+  "require": {
+    "php": ">7.0.0",
+    "inhere/http": "^1.0",
+    "swokit/server": "dev-master",
+    "swokit/context": "~1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "SwoKit\\Http\\Server\\" : "src/"
+    }
+  },
+  "suggest": {
+    "inhere/php-validate": "Very lightweight data validate tool",
+    "inhere/console": "a lightweight php console application library."
+  }
+}
