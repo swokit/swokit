@@ -1,0 +1,27 @@
+{
+  "name": "swoole-kit/process",
+  "type": "library",
+  "description": "some user process tool library of the swoole",
+  "keywords": ["library","tool","php"],
+  "homepage": "https://github.com/swoole-kit/process",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "inhere",
+      "email": "in.798@qq.com",
+      "homepage": "http://www.yzone.net/"
+    }
+  ],
+  "require": {
+    "php": ">7.0.0",
+    "toolkit/sys-utils": "~1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "SwooleLib\\Process\\" : "src/"
+    }
+  },
+  "suggest": {
+    "inhere/server": "create server by swoole"
+  }
+}
