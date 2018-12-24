@@ -26,7 +26,13 @@ composer require swokit/swokit
 - add git repo:
 
 ```bash
-./subtree-add.sh http-server
+./subtree-add.sh NAME
+```
+
+- pull git repo:
+
+```bash
+./subtree-pull.sh NAME|all
 ```
 
 - push to repos:
