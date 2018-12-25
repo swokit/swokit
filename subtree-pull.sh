@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# usage: ./subtree-add.sh http-server
+# usage: ./subtree-pull.sh http-server
 #
 
 #echo $@
@@ -24,6 +24,6 @@ echo ${libs}
 
 set -ex
 for lbName in ${libs} ; do
-  git subtree push --prefix=libs/${lbName} https://github.com/swokit/${lbName}.git master --squash
+  git subtree pull --prefix=libs/${lbName} https://github.com/swokit/${lbName}.git master --squash
 done
 
