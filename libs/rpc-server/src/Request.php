@@ -6,11 +6,11 @@
  * Time: 上午9:06
  */
 
-namespace Inhere\Server\Rpc;
+namespace Swokit\Server\Rpc;
 
 /**
  * Class Request
- * @package Inhere\Server\Rpc
+ * @package Swokit\Server\Rpc
  */
 class Request
 {

@@ -6,15 +6,15 @@
  * Time: 15:06
  */
 
-namespace Inhere\Server\Rpc;
+namespace Swokit\Server\Rpc;
 
-use Inhere\Server\Listener\Port\PortListener;
-use Inhere\Server\Listener\Port\TcpListenerInterface;
+use Swokit\Server\Listener\Port\PortListener;
+use Swokit\Server\Listener\Port\TcpListenerInterface;
 use Swoole\Server;
 
 /**
  * Class RpcServer
- * @package Inhere\Server\Rpc
+ * @package Swokit\Server\Rpc
  */
 abstract class RpcServerListener extends PortListener implements TcpListenerInterface
 {

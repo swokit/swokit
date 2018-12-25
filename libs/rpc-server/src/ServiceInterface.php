@@ -6,11 +6,11 @@
  * Time: 下午11:17
  */
 
-namespace Inhere\Server\Rpc;
+namespace Swokit\Server\Rpc;
 
 /**
  * Interface ServiceInterface
- * @package Inhere\Server\Rpc
+ * @package Swokit\Server\Rpc
  */
 interface ServiceInterface
 {

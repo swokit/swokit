@@ -6,13 +6,13 @@
  * Time: 下午11:09
  */
 
-namespace Inhere\Server\Rpc;
+namespace Swokit\Server\Rpc;
 
-use Inhere\Server\BuiltIn\TcpServer;
+use Swokit\Server\BuiltIn\TcpServer;
 
 /**
  * Class RpcServer
- * @package Inhere\Server\Rpc
+ * @package Swokit\Server\Rpc
  */
 class RpcServer extends TcpServer
 {

@@ -6,13 +6,13 @@
  * Time: 上午9:45
  */
 
-namespace Inhere\Server\Rpc\Inside;
+namespace Swokit\Server\Rpc\Inside;
 
-use Inhere\Server\Rpc\ServiceInterface;
+use Swokit\Server\Rpc\ServiceInterface;
 
 /**
  * Class MonitorService
- * @package Inhere\Server\Rpc\Inside
+ * @package Swokit\Server\Rpc\Inside
  */
 class MonitorService implements ServiceInterface
 {

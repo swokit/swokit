@@ -6,11 +6,11 @@
  * Time: 上午8:57
  */
 
-namespace Inhere\Server\Rpc;
+namespace Swokit\Server\Rpc;
 
 /**
  * Class RpcProxy
- * @package Inhere\Server\Rpc
+ * @package Swokit\Server\Rpc
  */
 class RpcProxy
 {

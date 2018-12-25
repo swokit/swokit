@@ -1,0 +1,59 @@
+{
+  "name": "swokit/swokit",
+  "type": "library",
+  "description": "some utils tool library for the php swoole ext",
+  "keywords": [
+    "library",
+    "tool",
+    "php",
+    "swoole",
+    "swokit"
+  ],
+  "homepage": "https://github.com/swokit/swokit",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "inhere",
+      "email": "in.798@qq.com",
+      "homepage": "http://www.yzone.net/"
+    }
+  ],
+  "require": {
+    "php": ">7.1.0",
+    "php-comp/http-message": "~1.0",
+    "toolkit/pool": "~1.0",
+    "toolkit/php-utils": "~1.0",
+    "toolkit/sys-utils": "~1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Swokit\\Pool\\": "libs/conn-pool/src/",
+      "Swokit\\Server\\": "libs/server/src/",
+      "Swokit\\Rpc\\Server": "libs/rpc-server/src/",
+      "Swokit\\Rpc\\Client": "libs/rpc-client/src/",
+      "Swokit\\Http\\Server": "libs/http-server/src/",
+      "Swokit\\WebSocket\\Server": "libs/websocket-server/src/",
+      "Swokit\\Process\\": "libs/process/src/",
+      "Swokit\\Task\\": "libs/task/src/",
+      "Swokit\\Util\\": "libs/utils/src/"
+    },
+    "files": [
+      "src/cache/src/Helper/Functions.php"
+    ]
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  },
+  "repositories": {
+    "packagist": {
+      "type": "composer",
+      "url": "https://packagist.phpcomposer.com"
+    }
+  },
+  "suggest": {
+    "inhere/php-validate": "Very lightweight data validate tool",
+    "inhere/console": "a lightweight php console application library."
+  }
+}

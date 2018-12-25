@@ -23,22 +23,32 @@ composer require swokit/swokit
 
 ## Git Subtree
 
-- add git repo:
-
 ```bash
+# add git repo
 ./subtree-add.sh NAME
-```
 
-- pull git repo:
-
-```bash
+# pull git repo:
 ./subtree-pull.sh NAME|all
+
+# push to repos:
+./subtree-push.sh NAME|all
 ```
 
-- push to repos:
+## Composer
 
-```bash
-./subtree-push.sh NAME|all
+```json
+{
+  "replace": {
+    "swokit/conn-pool": "self.version",
+    "swokit/task": "self.version",
+    "swokit/utils": "self.version",
+    "swokit/process": "self.version",
+    "swokit/server": "self.version",
+    "swokit/http-server": "self.version",
+    "swokit/rpc-server": "self.version",
+    "swokit/websocket-server": "self.version"
+  }
+}
 ```
 
 ## License
