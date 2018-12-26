@@ -20,6 +20,8 @@
   ],
   "require": {
     "php": ">7.1.0",
+    "psr/log": "^1.0",
+    "inhere/console": "dev-master",
     "php-comp/http-message": "~1.0",
     "toolkit/pool": "~1.0",
     "toolkit/php-utils": "~1.0",
@@ -29,10 +31,10 @@
     "psr-4": {
       "Swokit\\Pool\\": "libs/conn-pool/src/",
       "Swokit\\Server\\": "libs/server/src/",
-      "Swokit\\Rpc\\Server": "libs/rpc-server/src/",
-      "Swokit\\Rpc\\Client": "libs/rpc-client/src/",
-      "Swokit\\Http\\Server": "libs/http-server/src/",
-      "Swokit\\WebSocket\\Server": "libs/websocket-server/src/",
+      "Swokit\\Rpc\\Server\\": "libs/rpc-server/src/",
+      "Swokit\\Rpc\\Client\\": "libs/rpc-client/src/",
+      "Swokit\\Http\\Server\\": "libs/http-server/src/",
+      "Swokit\\WebSocket\\Server\\": "libs/websocket-server/src/",
       "Swokit\\Process\\": "libs/process/src/",
       "Swokit\\Task\\": "libs/task/src/",
       "Swokit\\Util\\": "libs/utils/src/"
