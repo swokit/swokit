@@ -2,7 +2,11 @@
   "name": "swokit/utils",
   "type": "library",
   "description": "some utils tool library of the swoole",
-  "keywords": ["library","tool","php"],
+  "keywords": [
+    "library",
+    "tool",
+    "php"
+  ],
   "homepage": "https://github.com/swokit/utils",
   "license": "MIT",
   "authors": [
@@ -13,13 +17,13 @@
     }
   ],
   "require": {
-    "php": ">=7.0.0",
+    "php": ">7.1.0",
     "toolkit/php-utils": "~1.0",
     "toolkit/sys-utils": "~1.0"
   },
   "autoload": {
     "psr-4": {
-      "SwoKit\\Util\\" : "src/"
+      "Swokit\\Util\\": "src/"
     }
   },
   "suggest": {
