@@ -40,7 +40,7 @@
       "Swokit\\Util\\": "libs/utils/src/"
     },
     "files": [
-      "src/cache/src/Helper/Functions.php"
+      "libs/utils/src/functions.php"
     ]
   },
   "extra": {
