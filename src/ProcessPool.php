@@ -63,7 +63,7 @@ class ProcessPool
      */
     public function __construct(array $config = [])
     {
-        Obj::smartConfigure($this, $config);
+        Obj::configure($this, $config);
 
         $this->masterPid = getmypid();
 
