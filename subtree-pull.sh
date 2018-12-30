@@ -22,6 +22,7 @@ libs=$(ls ./libs/)
 echo "Will pushed libs:"
 echo ${libs}
 
+# --squash
 set -ex
 for lbName in ${libs} ; do
   git subtree pull --prefix=libs/${lbName} https://github.com/swokit/${lbName}.git master --squash
