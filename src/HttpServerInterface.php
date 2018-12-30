@@ -6,16 +6,16 @@
  * Time: 下午4:59
  */
 
-namespace SwoKit\Http\Server;
+namespace Swokit\Http\Server;
 
 use Swoole\Http\Request;
 use Swoole\Http\Response;
 
 /**
  * Interface HttpServerInterface
- * @package SwoKit\Http\Server
+ * @package Swokit\Http\Server
  */
 interface HttpServerInterface
 {
-    public function handleRequest(Request $request, Response $response);
+    public function onRequest(Request $request, Response $response);
 }

@@ -6,17 +6,19 @@
  * Time: 16:04
  */
 
-namespace SwoKit\Http\Server;
+namespace Swokit\Http\Server;
 
 use Inhere\Console\Utils\Show;
 use Inhere\Library\Traits\OptionsTrait;
-use SwoKit\Http\Server\Util\AssetProcessor;
-use Inhere\Server\Server;
-// use Inhere\Server\Traits\HttpServerTrait;
-
+use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Log\LogLevel;
+use Swokit\Http\Server\Util\AssetProcessor;
+use Swokit\Http\Server\Util\Psr7Http;
+use Swokit\Server\KitServer;
 use Swoole\Http\Request;
 use Swoole\Http\Response;
+
+// use Swokit\Server\Traits\HttpServerTrait;
 
 /*
 
@@ -35,7 +37,7 @@ http config:
     // SWOOLE_PROCESS 业务代码在Worker进程中执行 SWOOLE_BASE 业务代码在Reactor进程中直接执行
     'mode' => 'process', // 'process' 'base'
 
-    'event_handler' => \Inhere\Server\handlers\HttpServerHandler::class,
+    'event_handler' => \Swokit\Server\handlers\HttpServerHandler::class,
     'event_list' => [ '' ]
 ],
 'options' => [
@@ -46,9 +48,9 @@ http config:
 
 /**
  * Class HttpServerHandler
- * @package Inhere\Server\handlers
+ * @package Swokit\Server\handlers
  */
-abstract class HttpServer extends Server implements HttpServerInterface
+class HttpServer extends KitServer implements HttpServerInterface
 {
     use OptionsTrait;
 
@@ -57,6 +59,11 @@ abstract class HttpServer extends Server implements HttpServerInterface
      * @var AssetProcessor
      */
     protected $staticAccessHandler;
+
+    /**
+     * @var RequestHandlerInterface
+     */
+    protected $handler;
 
     /**
      * @var array
@@ -97,6 +104,20 @@ abstract class HttpServer extends Server implements HttpServerInterface
     }
 
     /**
+     * @param string $host
+     * @param int $port
+     */
+    public function run(string $host = 'localhost', int $port = 9501)
+    {
+        $this->setServerSettings([
+            'host' => $host,
+            'port' => $port,
+        ]);
+
+        $this->start();
+    }
+
+    /**
      * {@inheritDoc}
      */
     protected function beforeServerStart()
@@ -110,29 +131,33 @@ abstract class HttpServer extends Server implements HttpServerInterface
     /**
      * @param Request $request
      * @param Response $response
+     * @return bool
      */
-    public function beforeRequest(Request $request, Response $response)
-    {}
+    public function beforeRequest(Request $request, Response $response): bool
+    {
+        return true;
+    }
 
     /**
      * 处理http请求
      * @param  Request $request
      * @param  Response $response
-     * @return bool|mixed
      */
     public function onRequest(Request $request, Response $response)
     {
         $uri = $request->server['request_uri'];
-        $startTime = microtime(true);
-        $request->server['request_memory'] = memory_get_usage(true);
+        $startTime = \microtime(true);
+        $request->server['request_memory'] = \memory_get_usage(true);
 
         // test: `curl 127.0.0.1:9501/ping`
         if ($uri === '/ping') {
-            return $response->end('+PONG' . PHP_EOL);
+            $response->end('+PONG');
+            return;
         }
 
-        if (strtolower($uri) === '/favicon.ico' && $this->getOption('ignoreFavicon')) {
-            return $response->end('+ICON');
+        if (\strtolower($uri) === '/favicon.ico' && $this->getOption('ignoreFavicon')) {
+            $response->end('+ICON');
+            return;
         }
 
         $reqTime = $request->server['request_time_float'];
@@ -144,7 +169,7 @@ abstract class HttpServer extends Server implements HttpServerInterface
         if ($stHandler = $this->staticAccessHandler) {
             if ($stHandler->handle($request, $response, $uri)) {
                 $this->log("Access asset: $uri");
-                return true;
+                return;
             }
 
             if ($error = $stHandler->getError()) {
@@ -152,10 +177,19 @@ abstract class HttpServer extends Server implements HttpServerInterface
             }
         }
 
-        // handle the Dynamic Request
-        $this->handleRequest($request, $response);
+        if (!$requestHandler = $this->handler) {
+            $response->end('No Handler');
+            return;
+        }
 
-        // end
+        // handle the Dynamic Request
+        $psr7Req = Psr7Http::createServerRequest($request, $response);
+        $psr7Res = $requestHandler->handle($psr7Req);
+
+        // respond to client
+        Psr7Http::respond($psr7Res, $response);
+
+        // after
         $endTime = microtime(true);
         $this->log(sprintf(
             'request ended, start time=%s, current time=%s, runtime=%s ms',
@@ -165,8 +199,6 @@ abstract class HttpServer extends Server implements HttpServerInterface
         ]);
 
         $this->afterRequest($request, $response);
-
-        return true;
     }
 
     /**
@@ -174,7 +206,8 @@ abstract class HttpServer extends Server implements HttpServerInterface
      * @param Response $response
      */
     protected function afterRequest(Request $request, Response $response)
-    {}
+    {
+    }
 
     /**
      * @param Response $response
@@ -209,6 +242,22 @@ abstract class HttpServer extends Server implements HttpServerInterface
 
         Show::title('some options for the http server');
         Show::mList($this->options);
+    }
+
+    /**
+     * @return RequestHandlerInterface
+     */
+    public function getHandler(): RequestHandlerInterface
+    {
+        return $this->handler;
+    }
+
+    /**
+     * @param RequestHandlerInterface $handler
+     */
+    public function setHandler(RequestHandlerInterface $handler): void
+    {
+        $this->handler = $handler;
     }
 
 }
