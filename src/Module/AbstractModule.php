@@ -6,33 +6,33 @@
  * Time: 22:51
  */
 
-namespace SwoKit\WebSocket\Server\Module;
+namespace Swokit\WebSocket\Server\Module;
 
 use Inhere\Library\Helpers\PhpHelper;
 use Inhere\Library\Traits\OptionsTrait;
-use Inhere\Http\ServerRequest as Request;
-use Inhere\Http\Response;
 use Monolog\Logger;
+use PhpComp\Http\Message\Response;
+use PhpComp\Http\Message\ServerRequest as Request;
+use Swokit\WebSocket\Server\Connection;
+use Swokit\WebSocket\Server\DataParser\DataParserInterface;
+use Swokit\WebSocket\Server\DataParser\JsonDataParser;
+use Swokit\WebSocket\Server\Message;
 use Swoole\WebSocket\Server;
 use Sws\Application;
-use SwoKit\WebSocket\Server\DataParser\JsonDataParser;
-use SwoKit\WebSocket\Server\DataParser\DataParserInterface;
-use SwoKit\WebSocket\Server\Connection;
-use SwoKit\WebSocket\Server\Message;
 
 /**
  * Class ARouteHandler
- * @package SwoKit\WebSocket\Server\Module
+ * @package Swokit\WebSocket\Server\Module
  */
 abstract class AbstractModule implements ModuleInterface
 {
     use OptionsTrait;
 
     // custom ws handler position
-    const OPEN_HANDLER = 0;
-    const MESSAGE_HANDLER = 1;
-    const CLOSE_HANDLER = 2;
-    const ERROR_HANDLER = 3;
+    public const OPEN_HANDLER = 0;
+    public const MESSAGE_HANDLER = 1;
+    public const CLOSE_HANDLER = 2;
+    public const ERROR_HANDLER = 3;
 
     /**
      * the module name
@@ -67,11 +67,11 @@ abstract class AbstractModule implements ModuleInterface
     protected $routes = [];
 
     // default command name, if request data not define command name.
-    const DEFAULT_CMD = 'index';
-    const DEFAULT_CMD_SUFFIX = 'Command';
+    public const DEFAULT_CMD = 'index';
+    public const DEFAULT_CMD_SUFFIX = 'Command';
 
-    const DENY_ALL = '!';
-    const ALLOW_ALL = '*';
+    public const DENY_ALL = '!';
+    public const ALLOW_ALL = '*';
 
     /**
      * @var array
@@ -154,7 +154,7 @@ abstract class AbstractModule implements ModuleInterface
      */
     public function onError(Application $app, string $msg)
     {
-        $this->log('Accepts a connection on a socket error, when request : ' . $msg, [],Logger::ERROR);
+        $this->log('Accepts a connection on a socket error, when request : ' . $msg, [], Logger::ERROR);
     }
 
     /*******************************************************************************
@@ -259,7 +259,7 @@ abstract class AbstractModule implements ModuleInterface
 
         // not found
         if (!method_exists($this, $method)) {
-            $this->log("The #{$cid} request command: $command not found, module: $name, run 'notFound' command", [],Logger::NOTICE);
+            $this->log("The #{$cid} request command: $command not found, module: $name, run 'notFound' command", [], Logger::NOTICE);
             $method = self::NOT_FOUND . $suffix;
 
             return $this->$method($data, $command, $cid, $conn);

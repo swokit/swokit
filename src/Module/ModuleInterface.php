@@ -6,28 +6,28 @@
  * Time: 15:35
  */
 
-namespace SwoKit\WebSocket\Server\Module;
+namespace Swokit\WebSocket\Server\Module;
 
 use Monolog\Logger;
+use PhpComp\Http\Message\Response;
+use PhpComp\Http\Message\ServerRequest as Request;
+use Swokit\WebSocket\Server\Connection;
+use Swokit\WebSocket\Server\Message;
 use Swoole\WebSocket\Server;
 use Sws\Application;
-use Inhere\Http\ServerRequest as Request;
-use Inhere\Http\Response;
-use SwoKit\WebSocket\Server\Connection;
-use SwoKit\WebSocket\Server\Message;
 
 /**
  * Interface ModuleInterface
- * @package SwoKit\WebSocket\Server\Module
+ * @package Swokit\WebSocket\Server\Module
  */
 interface ModuleInterface
 {
-    const SEND_PING = 'ping';
-    const NOT_FOUND = 'notFound';
-    const PARSE_ERROR = 'error';
+    public const SEND_PING = 'ping';
+    public const NOT_FOUND = 'notFound';
+    public const PARSE_ERROR = 'error';
 
-    const DATA_JSON = 'json';
-    const DATA_TEXT = 'text';
+    public const DATA_JSON = 'json';
+    public const DATA_TEXT = 'text';
 
     /**
      * @param Request $request

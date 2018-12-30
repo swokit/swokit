@@ -6,13 +6,13 @@
  * Time: 10:59
  */
 
-namespace SwoKit\WebSocket\Server\Module;
+namespace Swokit\WebSocket\Server\Module;
 
 /**
- * Class HandlerAbstracter
- * @package SwoKit\WebSocket\Server\Module
+ * Class AbstractHandler
+ * @package Swokit\WebSocket\Server\Module
  */
-class HandlerAbstracter implements HandlerInterface
+class AbstractHandler implements HandlerInterface
 {
     public function run(string $command)
     {
