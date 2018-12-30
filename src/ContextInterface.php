@@ -1,0 +1,63 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: inhere
+ * Date: 2017-08-31
+ * Time: 15:19
+ */
+
+namespace SwoKit\Context;
+
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+
+/**
+ * Interface ContextInterface
+ * @package SwoKit\Context
+ *
+ * @property string $id The request context unique ID
+ */
+interface ContextInterface
+{
+    /**
+     * @return string
+     */
+    public function getId();
+
+    /**
+     * @param string $id
+     */
+    public function setId($id);
+
+    /**
+     * @return string
+     */
+    public function getKey(): string;
+
+    /**
+     * @param string $key
+     * @return mixed
+     */
+    public function get(string $key);
+
+    /**
+     * @param string $key
+     * @param $value
+     */
+    public function set(string $key, $value);
+
+    /**
+     * destroy something ...
+     */
+    public function destroy();
+
+    /**
+     * @return array
+     */
+    public function getData(): array;
+
+    /**
+     * @param array $data
+     */
+    public function setData(array $data);
+}
