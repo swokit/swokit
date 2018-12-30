@@ -6,11 +6,11 @@
  * Time: 下午10:59
  */
 
-namespace Inhere\Server\Rpc;
+namespace Swokit\Server\Rpc;
 
 /**
  * Class ParserAbstracter
- * @package Inhere\Server\Rpc
+ * @package Swokit\Server\Rpc
  */
 abstract class ParserAbstracter implements ParserInterface
 {

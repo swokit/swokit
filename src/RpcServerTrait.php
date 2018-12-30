@@ -6,11 +6,11 @@
  * Time: 下午11:09
  */
 
-namespace Inhere\Server\Rpc;
+namespace Swokit\Server\Rpc;
 
 /**
  * Class RpcServerTrait
- * @package Inhere\Server\Rpc
+ * @package Swokit\Server\Rpc
  */
 trait RpcServerTrait
 {

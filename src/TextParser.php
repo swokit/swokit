@@ -6,11 +6,11 @@
  * Time: 17:45
  */
 
-namespace Inhere\Server\Rpc;
+namespace Swokit\Server\Rpc;
 
 /**
  * Class TextParser
- * @package Inhere\Server\Rpc
+ * @package Swokit\Server\Rpc
  */
 class TextParser extends ParserAbstracter
 {

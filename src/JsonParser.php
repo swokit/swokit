@@ -6,13 +6,13 @@
  * Time: 17:45
  */
 
-namespace Inhere\Server\Rpc;
+namespace Swokit\Server\Rpc;
 
 use Inhere\Exceptions\DataParseException;
 
 /**
  * Class JsonParser
- * @package Inhere\Server\Rpc
+ * @package Swokit\Server\Rpc
  */
 class JsonParser extends ParserAbstracter
 {

@@ -1,9 +1,13 @@
 {
-  "name": "swoole-libs/rpc",
+  "name": "swokit/rpc-server",
   "type": "library",
-  "description": "a php rpc powered by swoole",
-  "keywords": [ "library", "server", "swoole", "http", "webSocket", "tcp", "udp" ],
-  "homepage": "https://github.com/inhere/swoole-libs/rpc",
+  "description": "a php rpc server powered by swoole",
+  "keywords": [
+    "library",
+    "rpc-server",
+    "swoole"
+  ],
+  "homepage": "https://github.com/swokit/rpc-server",
   "license": "MIT",
   "authors": [
     {
@@ -13,14 +17,13 @@
     }
   ],
   "require": {
-    "php": ">=7.0.0",
-    "inhere/http": "dev-master",
-    "inhere/server": "dev-master",
-    "inhere/library": "dev-master"
+    "php": ">7.1.0",
+    "php-comp/http-message": "^1.0",
+    "swokit/server": "dev-master"
   },
   "autoload": {
     "psr-4": {
-      "SwooleLib\\Rpc\\" : "src/"
+      "Swokit\\Rpc\\Server\\": "src/"
     }
   },
   "suggest": {

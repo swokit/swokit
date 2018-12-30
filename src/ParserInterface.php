@@ -6,11 +6,11 @@
  * Time: 17:40
  */
 
-namespace Inhere\Server\Rpc;
+namespace Swokit\Server\Rpc;
 
 /**
  * Interface ParserInterface
- * @package Inhere\Server\Rpc
+ * @package Swokit\Server\Rpc
  */
 interface ParserInterface
 {
