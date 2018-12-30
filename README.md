@@ -4,7 +4,7 @@
 ## install
 
 ```bash
-composer require swoole-kit/process
+composer require swokit/process
 ```
 
 ## license

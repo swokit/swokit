@@ -6,13 +6,13 @@
  * Time: 下午11:16
  */
 
-namespace SwooleKit\Process;
+namespace Swokit\Process;
 
 use Swoole\Process;
 
 /**
  * Interface ProcessInterface
- * @package SwooleKit\Process
+ * @package Swokit\Process
  */
 interface ProcessInterface
 {

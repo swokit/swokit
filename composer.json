@@ -1,9 +1,13 @@
 {
-  "name": "swoole-kit/process",
+  "name": "swokit/process",
   "type": "library",
   "description": "some user process tool library of the swoole",
-  "keywords": ["library","tool","php"],
-  "homepage": "https://github.com/swoole-kit/process",
+  "keywords": [
+    "library",
+    "tool",
+    "php"
+  ],
+  "homepage": "https://github.com/swokit/process",
   "license": "MIT",
   "authors": [
     {
@@ -13,12 +17,12 @@
     }
   ],
   "require": {
-    "php": ">7.0.0",
+    "php": ">7.1.0",
     "toolkit/sys-utils": "~1.0"
   },
   "autoload": {
     "psr-4": {
-      "SwooleLib\\Process\\" : "src/"
+      "Swokit\\Process\\": "src/"
     }
   },
   "suggest": {

@@ -6,16 +6,16 @@
  * Time: 下午11:24
  */
 
-namespace SwooleKit\Process;
+namespace Swokit\Process;
 
-use Toolkit\ObjUtil\Obj;
-use Toolkit\Sys\ProcessUtil;
 use Swoole\Process;
 use Swoole\Server;
+use Toolkit\ObjUtil\Obj;
+use Toolkit\Sys\ProcessUtil;
 
 /**
  * Class UserProcess
- * @package SwooleKit\Process
+ * @package Swokit\Process
  */
 abstract class UserProcess implements ProcessInterface
 {
@@ -64,7 +64,7 @@ abstract class UserProcess implements ProcessInterface
     {
         Obj::smartConfigure($this, $config);
         $pid = getmypid();
-printf("i am master, pid: $pid\n");
+        printf("i am master, pid: $pid\n");
         $this->process = new Process(function (Process $process) {
             if ($this->name) {
                 ProcessUtil::setTitle($this->name);
@@ -72,7 +72,7 @@ printf("i am master, pid: $pid\n");
 
             // if use daemon, require fetch pid again.
 //            if ($this->daemon) {
-                $this->pid = $process->pid;
+            $this->pid = $process->pid;
 //            }
             printf("i am worker, pid: {$this->pid}\n");
 

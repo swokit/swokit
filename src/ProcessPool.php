@@ -6,15 +6,15 @@
  * Time: 9:54
  */
 
-namespace SwooleKit\Process;
+namespace Swokit\Process;
 
+use Swoole\Process;
 use Toolkit\ObjUtil\Obj;
 use Toolkit\Sys\ProcessUtil;
-use Swoole\Process;
 
 /**
  * Class ProcessServer - multi process
- * @package SwooleKit\Process
+ * @package Swokit\Process
  * @link https://wiki.swoole.com/wiki/page/p-process.html
  */
 class ProcessPool

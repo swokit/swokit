@@ -18,8 +18,8 @@ if (file_exists($file = dirname(__DIR__, 3) . '/autoload.php')) {
 
 $inhereDir = dirname(__DIR__, 2);
 $map = [
-    'SwooleKit\Http\Server\Test\\' => __DIR__,
-    'SwooleKit\Http\Server\\' => dirname(__DIR__) . '/src',
+    'Swokit\Http\Server\Test\\' => __DIR__,
+    'Swokit\Http\Server\\' => dirname(__DIR__) . '/src',
 ];
 
 spl_autoload_register(function ($class) use ($map) {
@@ -35,6 +35,7 @@ spl_autoload_register(function ($class) use ($map) {
     }
 });
 
-function include_file($file) {
+function include_file($file)
+{
     include $file;
 }
