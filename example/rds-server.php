@@ -11,7 +11,7 @@ use Swoole\Redis\Server;
 require dirname(__DIR__) . '/test/boot.php';
 
 // implement a simple redis server.
-$rdsServer = \SwoKit\Server\RedisServer::create([]);
+$rdsServer = \Swokit\Server\RedisServer::create([]);
 
 $rdsServer->addCommand('get', function (Server $server, $fd, $data) {
     if (\count($data) === 0) {
@@ -102,9 +102,8 @@ $rdsServer->addCommand('hSet', function (Server $server, $fd, $data) {
     }
 
     $key = $data[0];
-
     if (!isset($server->data[$key])) {
-        $array[$key] = array();
+        $array[$key] = [];
     }
 
     $field = $data[1];
@@ -112,7 +111,6 @@ $rdsServer->addCommand('hSet', function (Server $server, $fd, $data) {
 
     $count = !isset($server->data[$key][$field]) ? 1 : 0;
     $server->data[$key][$field] = $value;
-
     $server->send($fd, Server::format(Server::INT, $count));
 });
 

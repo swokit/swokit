@@ -6,25 +6,25 @@
  * Time: 00:09
  */
 
-namespace SwoKit\Server;
+namespace Swokit\Server;
 
 use Inhere\Console\Utils\Show;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel as Logger;
-use SwoKit\Server\Event\ServerEvent;
-use SwoKit\Server\Event\SwooleEvent;
-use SwoKit\Server\Traits\HandleSwooleEventTrait;
-use SwoKit\Server\Traits\ServerCreateTrait;
-use SwoKit\Server\Traits\ServerEventManageTrait;
-use SwoKit\Server\Traits\ServerManageTrait;
-use SwoKit\Util\ServerUtil;
+use Swokit\Server\Event\ServerEvent;
+use Swokit\Server\Event\SwooleEvent;
+use Swokit\Server\Traits\HandleSwooleEventTrait;
+use Swokit\Server\Traits\ServerCreateTrait;
+use Swokit\Server\Traits\ServerEventManageTrait;
+use Swokit\Server\Traits\ServerManageTrait;
+use Swokit\Util\ServerUtil;
 use Toolkit\PhpUtil\PhpException;
 
 /**
- * Class AbstractServer
- * @package SwoKit\Server
+ * Class BaseServer
+ * @package Swokit\Server
  */
-abstract class AbstractServer implements ServerInterface
+abstract class BaseServer implements ServerInterface
 {
     use ServerEventManageTrait, HandleSwooleEventTrait, ServerCreateTrait, ServerManageTrait;
 
@@ -37,7 +37,9 @@ abstract class AbstractServer implements ServerInterface
     /** @var string Current server name */
     protected $name = 'server';
 
-    /** @var \Swoole\Server|\Swoole\Http\Server|\Swoole\WebSocket\Server */
+    /**
+     * @var \Swoole\Server|\Swoole\Http\Server|\Swoole\WebSocket\Server
+     */
     protected $server;
 
     /**
@@ -101,7 +103,7 @@ abstract class AbstractServer implements ServerInterface
         //     'type' => 'tcp',
 
         //      setting event handler
-        //     'event_handler' => '', // e.g '\SwoKit\Server\listeners\TcpListenHandler'
+        //     'event_handler' => '', // e.g '\Swokit\Server\listeners\TcpListenHandler'
         //     'events'   => [], // e.g [ 'onReceive', ]
         // ],
 
@@ -279,7 +281,7 @@ abstract class AbstractServer implements ServerInterface
             // display some messages
             $this->showStartStatus();
 
-            $this->fire(ServerEvent::BEFORE_SWOOLE_START, [$this]);
+            $this->fire(ServerEvent::SWOOLE_START, $this);
             $this->beforeServerStart();
 
             // start server
@@ -313,18 +315,18 @@ abstract class AbstractServer implements ServerInterface
         $this->bootstrapped = false;
 
         // prepare start server
-        $this->fire(ServerEvent::BEFORE_BOOTSTRAP, [$this]);
+        $this->fire(ServerEvent::BEFORE_BOOTSTRAP, $this);
         $this->beforeBootstrap();
 
         // do something for before create main server
-        $this->fire(ServerEvent::BEFORE_SERVER_CREATE, [$this]);
+        $this->fire(ServerEvent::SERVER_CREATE, $this);
         $this->beforeCreateServer();
 
         // create swoole server instance
         $this->createServer();
 
         // do something for after create main server(eg add custom process)
-        $this->fire(ServerEvent::SERVER_CREATED, [$this]);
+        $this->fire(ServerEvent::SERVER_CREATED, $this);
         $this->afterCreateServer();
 
         // attach Extend Server
@@ -341,7 +343,7 @@ abstract class AbstractServer implements ServerInterface
         $this->createListenServers($this->server);
 
         // prepared for start server
-        $this->fire(ServerEvent::BOOTSTRAPPED, [$this]);
+        $this->fire(ServerEvent::BOOTSTRAPPED, $this);
         $this->afterBootstrap();
 
         $this->bootstrapped = true;
@@ -431,6 +433,15 @@ abstract class AbstractServer implements ServerInterface
     }
 
     /**
+     * @param string $format
+     * @param mixed ...$args
+     */
+    public function logf(string $format, ...$args)
+    {
+        $this->log(\sprintf($format, ...$args));
+    }
+
+    /**
      * @param string $msg
      * @param array $context
      * @param int|string $type
@@ -451,7 +462,7 @@ abstract class AbstractServer implements ServerInterface
             $json = $context ? ' ' . \json_encode($context, \JSON_UNESCAPED_SLASHES) : '';
             // $type = Logger::getLevelName($type);
 
-            Show::write(sprintf('[%s.%s] [%s.%s] %s %s', $time, $ms, $this->name, strtoupper($type), $msg, $json));
+            Show::write(\sprintf('[%s.%s] [%s.%s] %s %s', $time, $ms, $this->name, \strtoupper($type), $msg, $json));
         }
 
         if ($this->logger) {
@@ -489,6 +500,22 @@ abstract class AbstractServer implements ServerInterface
     public function getServer()
     {
         return $this->server;
+    }
+
+    /**
+     * @param array $serverSettings
+     */
+    public function setServerSettings(array $serverSettings): void
+    {
+        $this->serverSettings = \array_merge($this->serverSettings, $serverSettings);
+    }
+
+    /**
+     * @param array $swooleSettings
+     */
+    public function setSwooleSettings(array $swooleSettings): void
+    {
+        $this->swooleSettings = \array_merge($this->swooleSettings, $swooleSettings);
     }
 
     /**
@@ -540,7 +567,6 @@ abstract class AbstractServer implements ServerInterface
     public function getPeerName(int $cid): array
     {
         $data = $this->getClientInfo($cid);
-
         return [
             'ip' => $data['remote_ip'] ?? '',
             'port' => $data['remote_port'] ?? 0,

@@ -18,7 +18,7 @@ $config = [
     'pidFile' => __DIR__ . '/logs/test_server.pid',
 
     'logger' => [
-        'name'     => 'slim_server',
+        'name' => 'slim_server',
         'basePath' => __DIR__ . '/logs/test_server',
         'logThreshold' => 0,
     ],
@@ -44,24 +44,24 @@ $config = [
             'type' => 'udp',
 
             // must setting the handler class in config.
-            'listener' => \Inhere\Server\Listener\Port\UdpListener::class,
+            'listener' => \Swokit\Server\Listener\Port\UdpListener::class,
         ]
     ],
 
     'swoole' => [
-        'user'    => 'www-data',
-        'worker_num'    => 4,
+        'user' => 'www-data',
+        'worker_num' => 4,
         'task_worker_num' => 2,
-        'daemonize'     => false,
-        'max_request'   => 10000,
+        'daemonize' => false,
+        'max_request' => 10000,
         // 'log_file' => PROJECT_PATH . '/temp/logs/slim_server_swoole.log',
     ]
 ];
 
-// $mgr = new \Inhere\Server\Extend\WebSocketServer($config);
-$mgr = new \Inhere\Server\Server($config);
+// $mgr = new \Swokit\Server\Extend\WebSocketServer($config);
+$mgr = new \Swokit\Server\KitServer($config);
 
-$mgr->attachListener('port2', new \Inhere\Server\Listener\Port\UdpListener([
+$mgr->attachListener('port2', new \Swokit\Server\Listener\Port\UdpListener([
     'host' => '0.0.0.0',
     'port' => '9762',
 ]));
