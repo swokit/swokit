@@ -2,7 +2,11 @@
   "name": "swokit/task",
   "type": "library",
   "description": "a php task powered by swoole",
-  "keywords": [ "library", "task", "swoole"],
+  "keywords": [
+    "library",
+    "task",
+    "swoole"
+  ],
   "homepage": "https://github.com/swokit/task",
   "license": "MIT",
   "authors": [
@@ -13,13 +17,13 @@
     }
   ],
   "require": {
-    "php": ">7.0.0",
+    "php": ">7.1.0",
     "psr/log": "^1.0",
     "toolkit/sys-utils": "^1.0"
   },
   "autoload": {
     "psr-4": {
-      "SwoKit\\Task\\" : "src/"
+      "Swokit\\Task\\": "src/"
     }
   },
   "suggest": {

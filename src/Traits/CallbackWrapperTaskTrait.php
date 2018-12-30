@@ -6,11 +6,13 @@
  * Time: 22:37
  */
 
-namespace SwoKit\Task\Traits;
+namespace Swokit\Task\Traits;
+
+use Toolkit\PhpUtil\PhpHelper;
 
 /**
  * Trait CallbackWrapperTaskTrait
- * @package SwoKit\Task\Traits
+ * @package Swokit\Task\Traits
  */
 trait CallbackWrapperTaskTrait
 {
@@ -36,6 +38,6 @@ trait CallbackWrapperTaskTrait
      */
     protected function exec(array $args)
     {
-        return TaskHelper::call($this->callback, ...$args);
+        return PhpHelper::call($this->callback, ...$args);
     }
 }
