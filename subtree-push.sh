@@ -24,6 +24,6 @@ echo ${libs}
 
 set -ex
 for lbName in ${libs} ; do
-  git subtree push --prefix=libs/${lbName} https://github.com/swokit/${lbName}.git master
+  git subtree push --prefix=libs/${lbName} https://github.com/swokit/${lbName}.git master --squash
 done
 
