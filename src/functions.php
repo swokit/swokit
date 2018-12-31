@@ -6,8 +6,12 @@
  * Time: 16:03
  */
 
-if (!function_exists('co')) {
-    function co(callable $cb)
+if (!function_exists('sco')) {
+    /**
+     * @param callable $cb
+     * @return bool
+     */
+    function sco(callable $cb)
     {
         return \Swokit\Util\Coroutine::create($cb);
     }
@@ -20,36 +24,12 @@ if (!function_exists('co')) {
 //     }
 // }
 
-function await(Closure $fn)
+function await(callable $fn, float $timeout = 2)
 {
-    $ch = new chan(1);
-
-    go(function () use ($fn, $ch) {
-        $ret = $fn();
-        $ch->push($ret);
-    });
-
-    // var_dump(\Co::getuid());
-    return $ch->pop();
+    return \Swokit\Util\Await::run($fn, $timeout);
 }
 
-function await_multi(Closure ...$fns)
+function await_multi(array $fns, float $timeout = 2)
 {
-    $len = count($fns);
-    $ch = new chan($len);
-
-    foreach ($fns as $fn) {
-        go(function () use ($fn, $ch) {
-            $ret = $fn();
-            $ch->push($ret);
-        });
-    }
-
-    $results = [];
-
-    for ($i = 0; $i < $len; $i++) {
-        $results[] = $ch->pop();
-    }
-
-    return $results;
+    return \Swokit\Util\Await::multi($fns, $timeout);
 }
