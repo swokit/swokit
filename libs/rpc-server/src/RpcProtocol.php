@@ -52,15 +52,15 @@ class RpcProtocol
     {
         // 解析客户端发送过来的协议
         $hasService = preg_match('/Rpc-Service:\s(.*);\r\n/i', $buffer, $service);
-        $hasParams = preg_match('/Rpc-Params:\s(.*);\r\n/i', $buffer, $params);
-        $hasMeta = preg_match('/Rpc-Meta:\s(.*);\r\n/i', $buffer, $meta);
+        $hasParams  = preg_match('/Rpc-Params:\s(.*);\r\n/i', $buffer, $params);
+        $hasMeta    = preg_match('/Rpc-Meta:\s(.*);\r\n/i', $buffer, $meta);
     }
 
     public function parseResponse($buffer): void
     {
         // 解析服务端发送过来的协议
         $hasService = preg_match('/Rpc-Service:\s(.*);\r\n/i', $buffer, $service);
-        $hasResult = preg_match('/Rpc-Result:\s(.*);\r\n/i', $buffer, $result);
-        $hasMeta = preg_match('/Rpc-Meta:\s(.*);\r\n/i', $buffer, $meta);
+        $hasResult  = preg_match('/Rpc-Result:\s(.*);\r\n/i', $buffer, $result);
+        $hasMeta    = preg_match('/Rpc-Meta:\s(.*);\r\n/i', $buffer, $meta);
     }
 }

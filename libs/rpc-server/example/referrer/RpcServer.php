@@ -41,13 +41,13 @@ class RpcServer
                 //这里为了简单，我们一次性读取
                 $buf = fread($client, 2048);
                 //解析客户端发送过来的协议
-                $classRet = preg_match('/Rpc-Class:\s(.*);\r\n/i', $buf, $class);
+                $classRet  = preg_match('/Rpc-Class:\s(.*);\r\n/i', $buf, $class);
                 $methodRet = preg_match('/Rpc-Method:\s(.*);\r\n/i', $buf, $method);
                 $paramsRet = preg_match('/Rpc-Params:\s(.*);\r\n/i', $buf, $params);
 
                 if ($classRet && $methodRet) {
                     $class = ucfirst($class[1]);
-                    $file = $realPath . '/' . $class . '.php';
+                    $file  = $realPath . '/' . $class . '.php';
                     //判断文件是否存在，如果有，则引入文件
                     if (file_exists($file)) {
                         require_once $file;

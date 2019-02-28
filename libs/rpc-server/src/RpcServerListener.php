@@ -38,8 +38,8 @@ abstract class RpcServerListener extends PortListener implements TcpListenerInte
     protected function init(): void
     {
         $this->options['setting'] = [
-            'open_eof_check' => true,
-            'package_eof' => "\r\n\r\n",
+            'open_eof_check'     => true,
+            'package_eof'        => "\r\n\r\n",
             'package_max_length' => 1024 * 1024 * 2,
             'socket_buffer_size' => 1024 * 1024 * 2, //2M缓存区
         ];
@@ -57,9 +57,9 @@ abstract class RpcServerListener extends PortListener implements TcpListenerInte
      * 接收到数据
      *     使用 `fd` 保存客户端IP，`from_id` 保存 `from_fd` 和 `port`
      * @param  Server $server
-     * @param  int $fd
-     * @param  int $fromId
-     * @param  mixed $data
+     * @param  int    $fd
+     * @param  int    $fromId
+     * @param  mixed  $data
      */
     public function onReceive(Server $server, $fd, $fromId, $data): void
     {

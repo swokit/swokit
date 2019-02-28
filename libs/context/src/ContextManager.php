@@ -84,14 +84,14 @@ class ContextManager implements ContextManagerInterface
     /**
      * @return int
      */
-    public function count():int
+    public function count(): int
     {
         return \count($this->contextList);
     }
 
     /**
      * @param null|int|string $id
-     * @param bool $thrError
+     * @param bool            $thrError
      * @return null|ServerRequestInterface
      */
     public function getRequest($id = null, $thrError = true): ?ServerRequestInterface
@@ -113,7 +113,7 @@ class ContextManager implements ContextManagerInterface
 
     /**
      * @param null|int|string $id
-     * @param bool $thrError
+     * @param bool            $thrError
      * @return null|ResponseInterface
      */
     public function getResponse($id = null, $thrError = true): ?ResponseInterface

@@ -71,9 +71,9 @@ abstract class UserProcess implements ProcessInterface
             }
 
             // if use daemon, require fetch pid again.
-//            if ($this->daemon) {
+            //            if ($this->daemon) {
             $this->pid = $process->pid;
-//            }
+            //            }
             printf("i am worker, pid: {$this->pid}\n");
 
             $this->started($process);
@@ -98,7 +98,7 @@ abstract class UserProcess implements ProcessInterface
      */
     public function attachTo(Server $server): void
     {
-        $this->server = $server;
+        $this->server     = $server;
         $this->allowStart = false;
 
         $server->addProcess($this->process);

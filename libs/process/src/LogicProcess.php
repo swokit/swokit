@@ -42,14 +42,14 @@ class LogicProcess implements ProcessInterface
      * class constructor.
      * @param string $name 进程名称
      * @param Server $server Swoole server instance
-     * @param int $workerId 要与此进程通信的 worker id
+     * @param int    $workerId 要与此进程通信的 worker id
      */
     public function __construct(string $name, Server $server, $workerId)
     {
-        $this->name = $name;
-        $this->server = $server;
+        $this->name     = $name;
+        $this->server   = $server;
         $this->workerId = $workerId;
-        $this->process = new Process([$this, 'started'], false, self::PIPE_SOCK_DGRAM);
+        $this->process  = new Process([$this, 'started'], false, self::PIPE_SOCK_DGRAM);
 
         // add to server, will auto start it.
         $server->addProcess($this->process);
@@ -66,7 +66,7 @@ class LogicProcess implements ProcessInterface
 
         swoole_event_add($process->pipe, [$this, 'onRead']);
 
-//        $this->server->worker_id = $this->workerId;
+        //        $this->server->worker_id = $this->workerId;
         $this->server->dst_worker_id = $this->workerId;
     }
 
@@ -78,15 +78,15 @@ class LogicProcess implements ProcessInterface
     {
         $received = Serialize::unpack($this->process->read($this->bufferSize));
 
-        $data = $received['data'];
-        $func = $data['func'];
+        $data   = $received['data'];
+        $func   = $data['func'];
         $result = $this->$func(...$data['args']);
 
         // 是否需要返回结果
         if ($data['returned']) {
             $newData['result'] = $result;
-            $newData['token'] = $data['token'];
-            $bag = $this->packData('rpc', $newData);
+            $newData['token']  = $data['token'];
+            $bag               = $this->packData('rpc', $newData);
 
             $this->server->sendMessage($data['workerId'], $bag);
         }
@@ -95,18 +95,18 @@ class LogicProcess implements ProcessInterface
     /**
      * 在 worker 进程中调用 此进程 来执行方法
      * @param string $name
-     * @param array $arguments
-     * @param bool $returned
+     * @param array  $arguments
+     * @param bool   $returned
      * @return string
      */
     public function call($name, array $arguments = [], $returned = true): string
     {
         $this->index++;
 
-        $data['args'] = $arguments;
-        $data['func'] = $name;
+        $data['args']  = $arguments;
+        $data['func']  = $name;
         $data['token'] = $this->genToken($name);
-//        $data['workerId'] = $this->server->worker_id;
+        //        $data['workerId'] = $this->server->worker_id;
         $data['workerId'] = $this->server->dst_worker_id;
         $data['returned'] = $returned;
 
@@ -116,8 +116,8 @@ class LogicProcess implements ProcessInterface
     }
 
     /**
-     * @param $type
-     * @param $data
+     * @param      $type
+     * @param      $data
      * @param null $func
      * @return mixed
      */

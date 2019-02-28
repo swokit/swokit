@@ -44,7 +44,7 @@ class RpcDispatcher
         'defaultService' => null,
 
         // default service action method name
-        'defaultAction' => 'index',
+        'defaultAction'  => 'index',
 
         // action executor. will auto call controller's executor method to run all action.
         // e.g: 'actionExecutor' => 'run'`
@@ -52,9 +52,9 @@ class RpcDispatcher
     ];
 
     /**
-     * @param string $name
+     * @param string                           $name
      * @param \Closure|ServiceInterface|string $handler
-     * @param bool $override
+     * @param bool                             $override
      */
     public function add(string $name, $handler, $override = false): void
     {
@@ -62,9 +62,9 @@ class RpcDispatcher
     }
 
     /**
-     * @param string $name
+     * @param string                    $name
      * @param \Closure|ServiceInterface $handler
-     * @param bool $override
+     * @param bool                      $override
      */
     public function register(string $name, $handler, $override = false): void
     {
@@ -102,14 +102,14 @@ class RpcDispatcher
 
     /**
      * @param string $key e.g 'user' OR 'user/info'
-     * @param array $params
+     * @param array  $params
      * @return mixed
      */
     public function dispatch(string $key, $params = null)
     {
         $result = null;
         $method = null;
-        $name = $key = trim($key, '/ ');
+        $name   = $key = trim($key, '/ ');
         $params = $params ?: [];
 
         try {

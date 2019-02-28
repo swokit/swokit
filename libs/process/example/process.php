@@ -26,12 +26,12 @@ class MyProcess extends \Swokit\Process\UserProcess
         }
 
         $process->exit(0);
-//        exit(0);
+        //        exit(0);
     }
 }
 
 $p = new MyProcess([
-    'name' => 'test',
+    'name'   => 'test',
     'daemon' => 1,
 ]);
 

@@ -107,9 +107,9 @@ class ProcessPool
 
             ProcessUtil::setTitle(sprintf('%s: worker%s', $this->name, $index));
 
-            $this->pid = $worker->pid;
+            $this->pid     = $worker->pid;
             $this->process = $worker;
-            $this->timer = swoole_timer_tick(3000, [$this, 'checkMasterPid']);
+            $this->timer   = swoole_timer_tick(3000, [$this, 'checkMasterPid']);
 
             $this->execute($worker);
         }, false, $pipeType);
@@ -157,7 +157,7 @@ class ProcessPool
      */
     public function rebootProcess(array $ret): void
     {
-        $pid = $ret['pid'];
+        $pid   = $ret['pid'];
         $index = array_search($pid, $this->workerIds, true);
 
         if ($index !== false) {

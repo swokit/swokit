@@ -2,7 +2,11 @@
   "name": "swokit/context",
   "type": "library",
   "description": "some context tool library of the swoole",
-  "keywords": ["library","tool","php"],
+  "keywords": [
+    "library",
+    "tool",
+    "php"
+  ],
   "homepage": "https://github.com/swokit/context",
   "license": "MIT",
   "authors": [
@@ -18,7 +22,7 @@
   },
   "autoload": {
     "psr-4": {
-      "SwoKit\\Context\\" : "src/"
+      "SwoKit\\Context\\": "src/"
     }
   },
   "suggest": {

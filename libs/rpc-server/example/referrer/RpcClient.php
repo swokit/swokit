@@ -19,7 +19,7 @@ namespace Swokit\Server\examples;
  */
 class RpcClient
 {
-    protected $urlInfo = array();
+    protected $urlInfo = [];
 
     public function __construct($url)
     {
@@ -45,7 +45,7 @@ class RpcClient
         $proto .= "Rpc-Method: {$method};" . PHP_EOL;
         //传递方法的参数
         $params = json_encode($params);
-        $proto .= "Rpc-Params: {$params};" . PHP_EOL;
+        $proto  .= "Rpc-Params: {$params};" . PHP_EOL;
 
         //向服务端发送我们自定义的协议数据
         fwrite($client, $proto);

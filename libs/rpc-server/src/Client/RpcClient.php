@@ -38,8 +38,8 @@ class RpcClient
      * @var array
      */
     private $setting = [
-        'open_eof_check' => true,
-        'package_eof' => "\r\n\r\n",
+        'open_eof_check'     => true,
+        'package_eof'        => "\r\n\r\n",
         'package_max_length' => 1024 * 1024 * 2,
         'socket_buffer_size' => 1024 * 1024 * 2, //2M缓存区
     ];
@@ -65,7 +65,7 @@ class RpcClient
 
     /**
      * @param string $method
-     * @param array $args
+     * @param array  $args
      * @return array
      */
     public function __call($method, array $args = [])
@@ -81,7 +81,7 @@ class RpcClient
     }
 
     /**
-     * @param $server
+     * @param       $server
      * @param array $args
      * @return array
      */
@@ -117,12 +117,12 @@ class RpcClient
 
     public function buildProtocolData($service, array $args, array $options = []): string
     {
-        $mTime = microtime(1);
+        $mTime  = microtime(1);
         $params = json_encode($args);
-        $meta = json_encode(array_merge([
-            'id' => md5($mTime . $service),
-            'time' => $mTime,
-            'key' => 'sec key',
+        $meta   = json_encode(array_merge([
+            'id'    => md5($mTime . $service),
+            'time'  => $mTime,
+            'key'   => 'sec key',
             'token' => 'request token',
         ], $options));
 

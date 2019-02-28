@@ -42,7 +42,7 @@ interface ContextManagerInterface
     /**
      * @return int
      */
-    public function count():int ;
+    public function count(): int;
 
     /**
      * @return \ArrayIterator

@@ -19,7 +19,7 @@ class MonitorService implements ServiceInterface
     public function services(): array
     {
         return [
-            'name' => 'config',
+            'name'  => 'config',
             'name1' => 'config',
         ];
     }

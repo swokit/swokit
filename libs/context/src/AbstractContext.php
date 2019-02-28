@@ -58,7 +58,7 @@ abstract class AbstractContext implements ContextInterface, \ArrayAccess
     public function all(): array
     {
         return [
-            'id' => $this->id,
+            'id'  => $this->id,
             'key' => $this->key,
         ];
     }
@@ -77,7 +77,7 @@ abstract class AbstractContext implements ContextInterface, \ArrayAccess
     public function destroy(): void
     {
         $this->data = [];
-        $this->id = $this->key = null;
+        $this->id   = $this->key = null;
     }
 
     /*******************************************************************************
@@ -127,7 +127,7 @@ abstract class AbstractContext implements ContextInterface, \ArrayAccess
 
     /**
      * @param string $key
-     * @param $value
+     * @param        $value
      */
     public function set(string $key, $value): void
     {

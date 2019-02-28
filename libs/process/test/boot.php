@@ -17,9 +17,9 @@ if (file_exists($file = dirname(__DIR__, 3) . '/autoload.php')) {
 }
 
 $inhereDir = dirname(__DIR__, 2);
-$map = [
+$map       = [
     'Swokit\Http\Server\Test\\' => __DIR__,
-    'Swokit\Http\Server\\' => dirname(__DIR__) . '/src',
+    'Swokit\Http\Server\\'      => dirname(__DIR__) . '/src',
 ];
 
 spl_autoload_register(function ($class) use ($map) {

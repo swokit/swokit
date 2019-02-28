@@ -8,9 +8,6 @@
 
 namespace SwoKit\Context;
 
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
-
 /**
  * Interface ContextInterface
  * @package SwoKit\Context
@@ -42,7 +39,7 @@ interface ContextInterface
 
     /**
      * @param string $key
-     * @param $value
+     * @param        $value
      */
     public function set(string $key, $value): void;
 

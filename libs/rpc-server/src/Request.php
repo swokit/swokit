@@ -52,8 +52,8 @@ class Request
     /**
      * Request constructor.
      * @param string $service
-     * @param array $params
-     * @param array $meta
+     * @param array  $params
+     * @param array  $meta
      */
     public function __construct($service, array $meta = [], array $params = [])
     {
@@ -63,7 +63,7 @@ class Request
         [$this->name, $this->method] = $this->parseServiceString($service);
 
         $this->params = $params;
-        $this->metas = $meta;
+        $this->metas  = $meta;
     }
 
     public function __destruct()
@@ -74,7 +74,7 @@ class Request
     public function destroy(): void
     {
         $this->service = $this->name = $this->method = null;
-        $this->params = $this->extra = $this->metas = null;
+        $this->params  = $this->extra = $this->metas = null;
     }
 
     /**
@@ -84,7 +84,7 @@ class Request
      */
     public function parseServiceString($service, $sep = '/'): array
     {
-        $name = $method = '';
+        $name    = $method = '';
         $service = trim($service, "$sep ");
 
         // split service name and method name

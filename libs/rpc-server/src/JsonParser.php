@@ -23,7 +23,7 @@ class JsonParser extends ParserAbstracter
 
     public function __construct($toArray = true)
     {
-        $this->name = 'json';
+        $this->name    = 'json';
         $this->toArray = (bool)$toArray;
     }
 
