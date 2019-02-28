@@ -35,7 +35,7 @@ abstract class RpcServerListener extends PortListener implements TcpListenerInte
      */
     private $parsers = [];
 
-    protected function init()
+    protected function init(): void
     {
         $this->options['setting'] = [
             'open_eof_check' => true,
@@ -48,7 +48,7 @@ abstract class RpcServerListener extends PortListener implements TcpListenerInte
     /**
      * {@inheritDoc}
      */
-    public function onConnect(Server $server, $fd)
+    public function onConnect(Server $server, $fd): void
     {
         $this->mgr->log("Has a new client [FD:$fd] connection.");
     }
@@ -61,7 +61,7 @@ abstract class RpcServerListener extends PortListener implements TcpListenerInte
      * @param  int $fromId
      * @param  mixed $data
      */
-    public function onReceive(Server $server, $fd, $fromId, $data)
+    public function onReceive(Server $server, $fd, $fromId, $data): void
     {
         $data = trim($data);
         $this->log("Receive data [$data] from client [FD:$fd].");
@@ -76,7 +76,7 @@ abstract class RpcServerListener extends PortListener implements TcpListenerInte
     /**
      * {@inheritDoc}
      */
-    public function onClose(Server $server, $fd)
+    public function onClose(Server $server, $fd): void
     {
         $this->mgr->log("The client [FD:$fd] connection closed.");
     }

@@ -58,7 +58,7 @@ class LogicProcess implements ProcessInterface
     /**
      * @param Process $process
      */
-    public function started(Process $process)
+    public function started(Process $process): void
     {
         if ($this->name) {
             ProcessUtil::setTitle($this->name);
@@ -74,7 +74,7 @@ class LogicProcess implements ProcessInterface
      * 接收到 worker 的调用，执行相关方法。需要返回值的就发送返回值到worker
      * on pipe Read
      */
-    public function onRead()
+    public function onRead(): void
     {
         $received = Serialize::unpack($this->process->read($this->bufferSize));
 
@@ -99,7 +99,7 @@ class LogicProcess implements ProcessInterface
      * @param bool $returned
      * @return string
      */
-    public function call($name, array $arguments = [], $returned = true)
+    public function call($name, array $arguments = [], $returned = true): string
     {
         $this->index++;
 
@@ -154,7 +154,7 @@ class LogicProcess implements ProcessInterface
     /**
      * @param int $bufferSize
      */
-    public function setBufferSize(int $bufferSize)
+    public function setBufferSize(int $bufferSize): void
     {
         $this->bufferSize = $bufferSize;
     }

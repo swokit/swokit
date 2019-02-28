@@ -47,5 +47,5 @@ interface ContextManagerInterface
     /**
      * @return \ArrayIterator
      */
-    public function getIterator();
+    public function getIterator(): \ArrayIterator;
 }

@@ -16,7 +16,7 @@ class MyProcess extends \Swokit\Process\UserProcess
     /**
      * {@inheritDoc}
      */
-    public function started(\Swoole\Process $process)
+    public function started(\Swoole\Process $process): void
     {
         parent::started($process);
 

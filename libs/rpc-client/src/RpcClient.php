@@ -85,12 +85,12 @@ class RpcClient
      * @param array $args
      * @return array
      */
-    public function getServices($server = null, array $args = [])
+    public function getServices($server = null, array $args = []): array
     {
         return $this->call('_m/services', $args, $server);
     }
 
-    public function call($service, array $args = [], $callback = null, $server = null)
+    public function call($service, array $args = [], $callback = null, $server = null): array
     {
         if (!$server) {
             $server = array_rand($this->getNames());
@@ -115,7 +115,7 @@ class RpcClient
         return [];
     }
 
-    public function buildProtocolData($service, array $args, array $options = [])
+    public function buildProtocolData($service, array $args, array $options = []): string
     {
         $mTime = microtime(1);
         $params = json_encode($args);
@@ -131,7 +131,7 @@ class RpcClient
             "RPC-M: $meta\r\n\r\n";
     }
 
-    protected function createCoroClient(array $conf, array $setting = [])
+    protected function createCoroClient(array $conf, array $setting = []): CoClient
     {
         $conn = new CoClient(SWOOLE_TCP);
         $conn->set($setting);
@@ -140,7 +140,7 @@ class RpcClient
         return $conn;
     }
 
-    protected function createSyncClient(array $conf, array $setting = [])
+    protected function createSyncClient(array $conf, array $setting = []): Client
     {
         $conn = new Client(SWOOLE_TCP | SWOOLE_KEEP);
         $conn->set($setting);
@@ -149,7 +149,7 @@ class RpcClient
         return $conn;
     }
 
-    protected function createAsyncClient(array $conf, array $setting = [])
+    protected function createAsyncClient(array $conf, array $setting = []): Client
     {
         $conn = new Client(SWOOLE_TCP | SWOOLE_ASYNC);
         $conn->set($setting);
@@ -186,7 +186,7 @@ class RpcClient
     /**
      * @param array $setting
      */
-    public function setSetting(array $setting)
+    public function setSetting(array $setting): void
     {
         $this->setting = $setting;
     }
@@ -214,7 +214,7 @@ class RpcClient
     /**
      * @param array $servers
      */
-    public function setServers(array $servers)
+    public function setServers(array $servers): void
     {
         $this->servers = $servers;
     }

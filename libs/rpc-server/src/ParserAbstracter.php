@@ -27,7 +27,7 @@ abstract class ParserAbstracter implements ParserInterface
         'p' => null, // mixed(the request params),
         'e' => null, // mixed(the extra data)
         'r' => [
-            't' => 0, // int(the request time)
+            't'  => 0, // int(the request time)
             'id' => 0,
         ],
     ];
@@ -41,7 +41,7 @@ abstract class ParserAbstracter implements ParserInterface
      * @param mixed $data
      * @return array
      */
-    public function validate($data)
+    public function validate($data): array
     {
         if (\is_string($data)) {
             $data = [
@@ -53,14 +53,14 @@ abstract class ParserAbstracter implements ParserInterface
         return array_merge(self::$defaultMap, $data);
     }
 
-    public function buildRequest($service, $params, $meta)
+    public function buildRequest($service, $params, $meta): string
     {
         return "Rpc-Service: $service\r\n" .
             "Rpc-Params: $params\r\n" .
             "Rpc-Meta: $meta\r\n\r\n";
     }
 
-    public function buildResponse($service, $result, $meta)
+    public function buildResponse($service, $result, $meta): string
     {
         return "Rpc-Service: $service\r\n" .
             "Rpc-Result: $result\r\n" .
@@ -71,7 +71,7 @@ abstract class ParserAbstracter implements ParserInterface
     /**
      * @return array
      */
-    public static function getDefaultMap()
+    public static function getDefaultMap(): array
     {
         return self::$defaultMap;
     }
@@ -87,7 +87,7 @@ abstract class ParserAbstracter implements ParserInterface
     /**
      * @param string $name
      */
-    public function setName(string $name)
+    public function setName(string $name): void
     {
         $this->name = $name;
     }

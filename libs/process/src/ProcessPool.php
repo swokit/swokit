@@ -19,8 +19,8 @@ use Toolkit\Sys\ProcessUtil;
  */
 class ProcessPool
 {
-    const PIPE_MODE = 'pipe';
-    const QUEUE_MODE = 'queue';
+    public const PIPE_MODE  = 'pipe';
+    public const QUEUE_MODE = 'queue';
 
     /** @var string */
     private $name = 'php-ps';
@@ -73,7 +73,7 @@ class ProcessPool
     /**
      * run
      */
-    public function run()
+    public function run(): void
     {
         try {
             for ($i = 0; $i < $this->maxPrecess; $i++) {
@@ -127,7 +127,7 @@ class ProcessPool
         return $pid;
     }
 
-    public function execute(Process $worker)
+    public function execute(Process $worker): void
     {
         // $recv = $worker->pop();
     }
@@ -135,7 +135,7 @@ class ProcessPool
     /**
      * param Process $worker
      */
-    public function checkMasterPid()
+    public function checkMasterPid(): void
     {
         if (!Process::kill($this->masterPid, 0)) {
             // clear timer
@@ -155,7 +155,7 @@ class ProcessPool
     /**
      * @param array $ret
      */
-    public function rebootProcess(array $ret)
+    public function rebootProcess(array $ret): void
     {
         $pid = $ret['pid'];
         $index = array_search($pid, $this->workerIds, true);
@@ -170,7 +170,7 @@ class ProcessPool
         throw new \RuntimeException('reboot process Error: no pid');
     }
 
-    public function wait()
+    public function wait(): void
     {
         while (\count($this->workerIds)) {
             if ($ret = Process::wait()) {
@@ -182,7 +182,7 @@ class ProcessPool
     /**
      * @link https://wiki.swoole.com/wiki/page/220.html
      */
-    public function asyncWait()
+    public function asyncWait(): void
     {
         Process::signal(\SIGCHLD, function ($sig) {
             // 必须为false，非阻塞模式

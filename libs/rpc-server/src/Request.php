@@ -60,7 +60,7 @@ class Request
         $this->service = $service;
 
         // split service name and method name
-        list($this->name, $this->method) = $this->parseServiceString($service);
+        [$this->name, $this->method] = $this->parseServiceString($service);
 
         $this->params = $params;
         $this->metas = $meta;
@@ -71,7 +71,7 @@ class Request
         $this->destroy();
     }
 
-    public function destroy()
+    public function destroy(): void
     {
         $this->service = $this->name = $this->method = null;
         $this->params = $this->extra = $this->metas = null;
@@ -82,14 +82,14 @@ class Request
      * @param string $sep
      * @return array
      */
-    public function parseServiceString($service, $sep = '/')
+    public function parseServiceString($service, $sep = '/'): array
     {
         $name = $method = '';
         $service = trim($service, "$sep ");
 
         // split service name and method name
         if ($service && strpos($service, $sep)) {
-            list($name, $method,) = explode($sep, $service, 3);
+            [$name, $method,] = explode($sep, $service, 3);
         }
 
         return [$name, $method];
@@ -106,7 +106,7 @@ class Request
     /**
      * @param string $service
      */
-    public function setService(string $service)
+    public function setService(string $service): void
     {
         $this->service = $service;
     }
@@ -122,7 +122,7 @@ class Request
     /**
      * @param string $name
      */
-    public function setName(string $name)
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
@@ -138,7 +138,7 @@ class Request
     /**
      * @param string $method
      */
-    public function setMethod($method)
+    public function setMethod($method): void
     {
         $this->method = $method;
     }
@@ -154,7 +154,7 @@ class Request
     /**
      * @param array $metas
      */
-    public function setMetas(array $metas)
+    public function setMetas(array $metas): void
     {
         $this->metas = $metas;
     }
@@ -170,7 +170,7 @@ class Request
     /**
      * @param array $params
      */
-    public function setParams(array $params)
+    public function setParams(array $params): void
     {
         $this->params = $params;
     }

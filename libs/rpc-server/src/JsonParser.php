@@ -48,7 +48,7 @@ class JsonParser extends ParserAbstracter
      * @param mixed $data
      * @return string
      */
-    public function encode($data)
+    public function encode($data): string
     {
         return json_encode($data);
     }

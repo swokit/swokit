@@ -20,14 +20,14 @@ use Psr\Http\Message\ServerRequestInterface;
 interface ContextInterface
 {
     /**
-     * @return string
+     * @return string|int
      */
     public function getId();
 
     /**
      * @param string $id
      */
-    public function setId($id);
+    public function setId($id): void;
 
     /**
      * @return string
@@ -44,12 +44,12 @@ interface ContextInterface
      * @param string $key
      * @param $value
      */
-    public function set(string $key, $value);
+    public function set(string $key, $value): void;
 
     /**
      * destroy something ...
      */
-    public function destroy();
+    public function destroy(): void;
 
     /**
      * @return array
@@ -59,5 +59,5 @@ interface ContextInterface
     /**
      * @param array $data
      */
-    public function setData(array $data);
+    public function setData(array $data): void;
 }

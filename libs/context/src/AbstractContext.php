@@ -74,7 +74,7 @@ abstract class AbstractContext implements ContextInterface, \ArrayAccess
     /**
      * destroy
      */
-    public function destroy()
+    public function destroy(): void
     {
         $this->data = [];
         $this->id = $this->key = null;
@@ -95,7 +95,7 @@ abstract class AbstractContext implements ContextInterface, \ArrayAccess
     /**
      * @param int|string $id
      */
-    public function setId($id)
+    public function setId($id): void
     {
         $this->id = $id;
     }
@@ -129,7 +129,7 @@ abstract class AbstractContext implements ContextInterface, \ArrayAccess
      * @param string $key
      * @param $value
      */
-    public function set(string $key, $value)
+    public function set(string $key, $value): void
     {
         $this->data[$key] = $value;
     }
@@ -145,7 +145,7 @@ abstract class AbstractContext implements ContextInterface, \ArrayAccess
     /**
      * @param array $data
      */
-    public function setData(array $data)
+    public function setData(array $data): void
     {
         $this->data = $data;
     }

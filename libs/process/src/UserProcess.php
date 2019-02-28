@@ -96,7 +96,7 @@ abstract class UserProcess implements ProcessInterface
     /**
      * @param Server $server
      */
-    public function attachTo(Server $server)
+    public function attachTo(Server $server): void
     {
         $this->server = $server;
         $this->allowStart = false;
@@ -110,7 +110,7 @@ abstract class UserProcess implements ProcessInterface
      * @param bool $async
      * @throws \LogicException
      */
-    public function start($wait = true, $async = false)
+    public function start($wait = true, $async = false): void
     {
         if (!$this->allowStart) {
             throw new \LogicException('This process is already on the swoole server and is not allowed to be started alone.');
@@ -127,7 +127,7 @@ abstract class UserProcess implements ProcessInterface
         }
     }
 
-    public function wait()
+    public function wait(): void
     {
         if ($ret = Process::wait()) {
             echo "exited\n";
@@ -137,7 +137,7 @@ abstract class UserProcess implements ProcessInterface
     /**
      * @link https://wiki.swoole.com/wiki/page/220.html
      */
-    public function asyncWait()
+    public function asyncWait(): void
     {
         Process::signal(SIGCHLD, function ($sig) {
             // 必须为false，非阻塞模式
@@ -150,12 +150,12 @@ abstract class UserProcess implements ProcessInterface
     /**
      * @param Process $process
      */
-    public function started(Process $process)
+    public function started(Process $process): void
     {
         swoole_event_add($process->pipe, [$this, 'onPipeRead']);
     }
 
-    public function onPipeRead()
+    public function onPipeRead(): void
     {
         // do something
     }
@@ -171,7 +171,7 @@ abstract class UserProcess implements ProcessInterface
     /**
      * @param string $name
      */
-    public function setName(string $name)
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
@@ -195,7 +195,7 @@ abstract class UserProcess implements ProcessInterface
     /**
      * @param bool $daemon
      */
-    public function setDaemon($daemon)
+    public function setDaemon($daemon): void
     {
         $this->daemon = (bool)$daemon;
     }
@@ -211,7 +211,7 @@ abstract class UserProcess implements ProcessInterface
     /**
      * @param bool $redirectIO
      */
-    public function setRedirectIO($redirectIO)
+    public function setRedirectIO($redirectIO): void
     {
         $this->redirectIO = (bool)$redirectIO;
     }
@@ -227,7 +227,7 @@ abstract class UserProcess implements ProcessInterface
     /**
      * @param bool|int $pipeType
      */
-    public function setPipeType($pipeType)
+    public function setPipeType($pipeType): void
     {
         $this->pipeType = $pipeType;
     }
@@ -243,7 +243,7 @@ abstract class UserProcess implements ProcessInterface
     /**
      * @param bool $useQueue
      */
-    public function setUseQueue($useQueue)
+    public function setUseQueue($useQueue): void
     {
         $this->useQueue = (bool)$useQueue;
     }
@@ -259,7 +259,7 @@ abstract class UserProcess implements ProcessInterface
     /**
      * @param int $queueKey
      */
-    public function setQueueKey(int $queueKey)
+    public function setQueueKey(int $queueKey): void
     {
         $this->queueKey = $queueKey;
     }
@@ -275,7 +275,7 @@ abstract class UserProcess implements ProcessInterface
     /**
      * @param bool $queueBlock
      */
-    public function setQueueBlock($queueBlock)
+    public function setQueueBlock($queueBlock): void
     {
         $this->queueBlock = (bool)$queueBlock;
     }
@@ -291,7 +291,7 @@ abstract class UserProcess implements ProcessInterface
     /**
      * @param int $queueMode
      */
-    public function setQueueMode(int $queueMode)
+    public function setQueueMode(int $queueMode): void
     {
         $this->queueMode = $queueMode;
     }

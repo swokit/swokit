@@ -22,11 +22,11 @@ class RpcDispatcher
     use EventTrait;
 
     // events
-    const ON_FOUND = 'found';
-    const ON_NOT_FOUND = 'notFound';
-    const ON_EXEC_START = 'execStart';
-    const ON_EXEC_END = 'execEnd';
-    const ON_EXEC_ERROR = 'execError';
+    public const ON_FOUND      = 'found';
+    public const ON_NOT_FOUND  = 'notFound';
+    public const ON_EXEC_START = 'execStart';
+    public const ON_EXEC_END   = 'execEnd';
+    public const ON_EXEC_ERROR = 'execError';
 
     /**
      * @var array
@@ -56,7 +56,7 @@ class RpcDispatcher
      * @param \Closure|ServiceInterface|string $handler
      * @param bool $override
      */
-    public function add(string $name, $handler, $override = false)
+    public function add(string $name, $handler, $override = false): void
     {
         $this->register($name, $handler, $override);
     }
@@ -66,7 +66,7 @@ class RpcDispatcher
      * @param \Closure|ServiceInterface $handler
      * @param bool $override
      */
-    public function register(string $name, $handler, $override = false)
+    public function register(string $name, $handler, $override = false): void
     {
         $name = trim($name);
 
@@ -91,7 +91,7 @@ class RpcDispatcher
     /**
      * @param array $map
      */
-    public function registers(array $map)
+    public function registers(array $map): void
     {
         foreach ($map as $item) {
             if (isset($item[0], $item[1])) {
@@ -123,7 +123,7 @@ class RpcDispatcher
 
             // split service name and method name
             if (strpos($key, '/')) {
-                list($name, $method,) = explode('/', $key, 3);
+                [$name, $method,] = explode('/', $key, 3);
             }
 
             if (!$service = $this->getService($name)) {
@@ -189,7 +189,7 @@ class RpcDispatcher
     /**
      * @param array $services
      */
-    public function setServices(array $services)
+    public function setServices(array $services): void
     {
         $this->services = $services;
     }

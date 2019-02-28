@@ -16,9 +16,9 @@ use Swoole\Process;
  */
 interface ProcessInterface
 {
-    const PIPE_NOT_CREATE = 0;
-    const PIPE_SOCK_STREAM = 1;
-    const PIPE_SOCK_DGRAM = 2;
+    public const PIPE_NOT_CREATE  = 0;
+    public const PIPE_SOCK_STREAM = 1;
+    public const PIPE_SOCK_DGRAM  = 2;
 
     /**
      * @param Process $process

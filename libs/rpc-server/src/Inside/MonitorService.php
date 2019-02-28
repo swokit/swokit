@@ -16,7 +16,7 @@ use Swokit\Server\Rpc\ServiceInterface;
  */
 class MonitorService implements ServiceInterface
 {
-    public function services()
+    public function services(): array
     {
         return [
             'name' => 'config',

@@ -30,7 +30,7 @@ interface ParserInterface
      * @param mixed $data
      * @return string
      */
-    public function encode($data);
+    public function encode($data): string;
 
     /**
      * @return string

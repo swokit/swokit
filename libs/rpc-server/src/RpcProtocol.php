@@ -14,11 +14,11 @@ namespace Swokit\Server\Rpc;
  */
 class RpcProtocol
 {
-    const KEY_SERVICE = 'Rpc-Service';
-    const KEY_META = 'Rpc-Meta';
+    public const KEY_SERVICE = 'Rpc-Service';
+    public const KEY_META    = 'Rpc-Meta';
 
-    const KEY_PARAMS = 'Rpc-Params';
-    const KEY_RESULT = 'Rpc-Result';
+    public const KEY_PARAMS = 'Rpc-Params';
+    public const KEY_RESULT = 'Rpc-Result';
 
     /**
      * @param string $service
@@ -26,7 +26,7 @@ class RpcProtocol
      * @param string $metas
      * @return string
      */
-    public function buildRequest($service, $metas, $params)
+    public function buildRequest($service, $metas, $params): string
     {
         return sprintf(
             "%s: %s\r\n%s: %s\r\n%s: %s\r\n\r\n",
@@ -40,7 +40,7 @@ class RpcProtocol
      * @param string $result
      * @return string
      */
-    public function buildResponse($service, $meta, $result)
+    public function buildResponse($service, $meta, $result): string
     {
         return sprintf(
             "%s: %s\r\n%s: %s\r\n%s: %s\r\n\r\n",
@@ -48,7 +48,7 @@ class RpcProtocol
         );
     }
 
-    public function parseRequest($buffer)
+    public function parseRequest($buffer): void
     {
         // 解析客户端发送过来的协议
         $hasService = preg_match('/Rpc-Service:\s(.*);\r\n/i', $buffer, $service);
@@ -56,7 +56,7 @@ class RpcProtocol
         $hasMeta = preg_match('/Rpc-Meta:\s(.*);\r\n/i', $buffer, $meta);
     }
 
-    public function parseResponse($buffer)
+    public function parseResponse($buffer): void
     {
         // 解析服务端发送过来的协议
         $hasService = preg_match('/Rpc-Service:\s(.*);\r\n/i', $buffer, $service);

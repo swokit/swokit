@@ -34,7 +34,7 @@ class ContextManager implements ContextManagerInterface
     /**
      * @param ContextInterface $context
      */
-    public function add(ContextInterface $context)
+    public function add(ContextInterface $context): void
     {
         $this->contextList[$context->getId()] = $context;
     }
@@ -76,7 +76,7 @@ class ContextManager implements ContextManagerInterface
     /**
      * clear
      */
-    public function clear()
+    public function clear(): void
     {
         $this->contextList = [];
     }
@@ -94,7 +94,7 @@ class ContextManager implements ContextManagerInterface
      * @param bool $thrError
      * @return null|ServerRequestInterface
      */
-    public function getRequest($id = null, $thrError = true)
+    public function getRequest($id = null, $thrError = true): ?ServerRequestInterface
     {
         if (null === $id) {
             $id = $this->getDefaultId();
@@ -116,7 +116,7 @@ class ContextManager implements ContextManagerInterface
      * @param bool $thrError
      * @return null|ResponseInterface
      */
-    public function getResponse($id = null, $thrError = true)
+    public function getResponse($id = null, $thrError = true): ?ResponseInterface
     {
         if (null === $id) {
             $id = $this->getDefaultId();
@@ -152,7 +152,7 @@ class ContextManager implements ContextManagerInterface
     /**
      * @param array $contextList
      */
-    public function setContextList(array $contextList)
+    public function setContextList(array $contextList): void
     {
         $this->contextList = $contextList;
     }
@@ -160,7 +160,7 @@ class ContextManager implements ContextManagerInterface
     /**
      * @return array
      */
-    public function getIds()
+    public function getIds(): array
     {
         return array_keys($this->contextList);
     }
@@ -168,7 +168,7 @@ class ContextManager implements ContextManagerInterface
     /**
      * @return \ArrayIterator
      */
-    public function getIterator()
+    public function getIterator(): \ArrayIterator
     {
         return new \ArrayIterator($this->contextList);
     }
