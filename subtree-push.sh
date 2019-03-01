@@ -19,7 +19,7 @@ if [[ -z "$1" ]]; then
 fi
 
 libs=$(ls ./libs/)
-echo "Will pulled libs:"
+echo "Will pushed libs:"
 echo ${libs}
 
 set -ex
